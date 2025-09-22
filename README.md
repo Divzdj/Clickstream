@@ -1,5 +1,5 @@
 # Clickstream Analysis & Prediction Web Application
-
+Public App URL: https://clickstream-9hwsn37uny9nwqrcpfebvz.streamlit.app/
 ## Project Overview
 This project analyzes e-commerce clickstream data to enhance customer engagement and drive sales. Using machine learning models, it predicts customer conversion, estimates potential revenue, and segments customers based on their browsing behavior. The interactive Streamlit application provides real-time insights for business decision-making.
 
