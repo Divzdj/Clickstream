@@ -20,7 +20,7 @@ except FileNotFoundError:
     st.error("Error loading models. Please ensure 'best_clf_pipeline_final.pkl', 'best_reg_pipeline_final.pkl', and 'customer_segmenter_kmeans.pkl' are in the same directory as app.py.")
 
 # 2. Define Helper Variables 
-
+CONVERSION_THRESHOLD = 0.35
 FEATURE_COLS = ['total_clicks', 'model_photography', 'country_2', 'country_3', 'country_4', 'country_5', 'country_6', 'country_7', 'country_8', 'country_9', 'country_10', 'country_11', 'country_12', 'country_13', 'country_14', 'country_15', 'country_16', 'country_17', 'country_18', 'country_19', 'country_20', 'country_21', 'country_22', 'country_23', 'country_24', 'country_25', 'country_26', 'country_27', 'country_28', 'country_29', 'country_30', 'country_31', 'country_32', 'country_33', 'country_34', 'country_35', 'country_36', 'country_37', 'country_38', 'country_39', 'country_41', 'country_42', 'country_43', 'country_44', 'country_45', 'country_46', 'country_47', 'main_category_mode_2', 'main_category_mode_3', 'main_category_mode_4', 'colour_2', 'colour_3', 'colour_4', 'colour_5', 'colour_6', 'colour_7', 'colour_8', 'colour_9', 'colour_10', 'colour_11', 'colour_12', 'colour_13', 'colour_14']
 
 #  3. Feature Transformation Functions 
@@ -83,7 +83,7 @@ def run_prediction(X_input):
     try:
         # 4.1 Classification Prediction (Conversion Likelihood)
         clf_proba = best_clf_pipeline.predict_proba(X_input)[:, 1]
-        clf_pred = best_clf_pipeline.predict(X_input)
+        clf_pred = np.where(clf_proba >= CONVERSION_THRESHOLD, 1, 0)
 
         # 4.2 Regression Prediction (Estimated Revenue)
         reg_pred = best_reg_pipeline.predict(X_input)
